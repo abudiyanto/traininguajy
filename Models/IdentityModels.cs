@@ -30,8 +30,8 @@ namespace TrainingUAJY.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<TrainingUAJY.Migrations.Computer> Computers { get; set; }
+        public System.Data.Entity.DbSet<TrainingUAJY.Models.Computer> Computers { get; set; }
 
-        public System.Data.Entity.DbSet<TrainingUAJY.Migrations.Brand> Brands { get; set; }
+        public System.Data.Entity.DbSet<TrainingUAJY.Models.Brand> Brands { get; set; }
     }
 }

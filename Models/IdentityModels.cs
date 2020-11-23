@@ -29,5 +29,9 @@ namespace TrainingUAJY.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<TrainingUAJY.Migrations.Computer> Computers { get; set; }
+
+        public System.Data.Entity.DbSet<TrainingUAJY.Migrations.Brand> Brands { get; set; }
     }
 }

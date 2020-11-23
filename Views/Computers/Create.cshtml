@@ -1,4 +1,4 @@
-﻿@model TrainingUAJY.Migrations.Computer
+﻿@model TrainingUAJY.Models.Computer
 
 @{
     ViewBag.Title = "Create";
@@ -29,6 +29,21 @@
                 @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Brand, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Brand", (IEnumerable<SelectListItem>)ViewBag.Brands, "Pilih Brand", new
+                  {
+                      @class = "form-control",
+                      id = "Brand",
+                      style = "width:100%",
+                      required = "required"
+                  })
+                @Html.ValidationMessageFor(model => model.Brand, "", new { @class = "text-danger" })
+            </div>
+          
         </div>
 
         <div class="form-group">

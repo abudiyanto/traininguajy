@@ -40,6 +40,14 @@ namespace TrainingUAJY.Controllers
         // GET: Computers/Create
         public ActionResult Create()
         {
+            var brands = db.Brands.Select(i => new SelectListItem()
+            {
+                Text = i.Title,
+                Value = i.IdBrand,
+                Selected = false
+            }).ToArray();
+            ViewBag.Brands = brands;
+
             return View();
         }
 
@@ -48,16 +56,26 @@ namespace TrainingUAJY.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "SKU,Title,Description")] Computer computer)
+        public async Task<ActionResult> Create(ViewModels.Computer addComputer)
         {
             if (ModelState.IsValid)
             {
+                var brand = await db.Brands.Where(x => x.IdBrand == addComputer.Brand).SingleOrDefaultAsync();
+                var computer = new Models.Computer()
+                {
+                    SKU = addComputer.SKU,
+                    Title = addComputer.Title,
+                    Description = addComputer.Description,
+                    Brand = brand
+                };
                 db.Computers.Add(computer);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                var result = await db.SaveChangesAsync();
+                if (result > 0)
+                {
+                    return RedirectToAction("Index");
+                }
             }
-
-            return View(computer);
+            return View("Error");
         }
 
         // GET: Computers/Edit/5

@@ -172,6 +172,7 @@
     <Compile Include="Controllers\ComputersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProcessorsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,6 +183,10 @@
     <Compile Include="Migrations\202011231306153_ComputerV1.cs" />
     <Compile Include="Migrations\202011231306153_ComputerV1.Designer.cs">
       <DependentUpon>202011231306153_ComputerV1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011241322158_ComputerV2.cs" />
+    <Compile Include="Migrations\202011241322158_ComputerV2.Designer.cs">
+      <DependentUpon>202011241322158_ComputerV2.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Computer.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -259,6 +264,11 @@
     <Content Include="Views\Brands\Details.cshtml" />
     <Content Include="Views\Brands\Edit.cshtml" />
     <Content Include="Views\Brands\Index.cshtml" />
+    <Content Include="Views\Processors\Create.cshtml" />
+    <Content Include="Views\Processors\Delete.cshtml" />
+    <Content Include="Views\Processors\Details.cshtml" />
+    <Content Include="Views\Processors\Edit.cshtml" />
+    <Content Include="Views\Processors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -282,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011231306153_ComputerV1.resx">
       <DependentUpon>202011231306153_ComputerV1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011241322158_ComputerV2.resx">
+      <DependentUpon>202011241322158_ComputerV2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -19,9 +19,10 @@ namespace TrainingUAJY.Controllers
         // GET: Computers
         public async Task<ActionResult> Index()
         {
-            return View(await db.Computers.ToListAsync());
+            var computers = await db.Computers.Include("Processor").Include("Brand").ToListAsync();
+            return View(computers);
         }
-
+        
         // GET: Computers/Details/5
         public async Task<ActionResult> Details(string id)
         {
@@ -48,6 +49,14 @@ namespace TrainingUAJY.Controllers
             }).ToArray();
             ViewBag.Brands = brands;
 
+            var processors = db.Processors.Select(i => new SelectListItem()
+            {
+                Text = i.Title,
+                Value = i.IdProcessor,
+                Selected = false
+            }).ToArray();
+            ViewBag.Processors = processors;
+
             return View();
         }
 
@@ -61,12 +70,18 @@ namespace TrainingUAJY.Controllers
             if (ModelState.IsValid)
             {
                 var brand = await db.Brands.Where(x => x.IdBrand == addComputer.Brand).SingleOrDefaultAsync();
+                var processor = await db.Processors.Where(x => x.IdProcessor == addComputer.Processor).SingleOrDefaultAsync();
                 var computer = new Models.Computer()
                 {
                     SKU = addComputer.SKU,
                     Title = addComputer.Title,
                     Description = addComputer.Description,
-                    Brand = brand
+                    Brand = brand,
+                    Processor = processor,
+                    ProductionYear = addComputer.ProductionYear,
+                    ScreenSize = addComputer.ScreenSize,
+                    RAM = addComputer.RAM,
+                    Storage = addComputer.Storage
                 };
                 db.Computers.Add(computer);
                 var result = await db.SaveChangesAsync();

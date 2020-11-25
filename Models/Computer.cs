@@ -18,6 +18,24 @@ namespace TrainingUAJY.Models
         public int ScreenSize { get; set; }
         public int RAM { get; set; }
         public int Storage { get; set; }
+        public int Stock { get; set; }
+        public int Price { get; set; }
+    }
+    public class Transaction
+    {
+        [Key]
+        public string IdTransaction { get; set; }
+        public Computer Computer { get; set; }
+        public DateTimeOffset Created { get; set; }
+        public TransactionType Type { get; set; }
+        public int Amount { get; set; }
+        public int TotalTransaction { get; set; }
+        public string Notes { get; set; }
+    }
+    public enum TransactionType
+    {
+        Debet,
+        Credit
     }
     public class Brand
     {

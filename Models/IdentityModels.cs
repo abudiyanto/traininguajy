@@ -35,5 +35,6 @@ namespace TrainingUAJY.Models
         public System.Data.Entity.DbSet<TrainingUAJY.Models.Brand> Brands { get; set; }
 
         public System.Data.Entity.DbSet<TrainingUAJY.Models.Processor> Processors { get; set; }
+        public System.Data.Entity.DbSet<TrainingUAJY.Models.Transaction> Transactions { get; set; }
     }
 }

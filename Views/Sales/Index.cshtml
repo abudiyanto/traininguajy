@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TrainingUAJY.Models.Transaction>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Daftar Penjualan</h2>
+
+<a href="@Url.Action("Create")" class="btn btn-danger">Tambah Penjualan</a>
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Computer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Computer.Price)
+        </th>
+        <th>
+           Total Transaksi
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Computer.Title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Amount)
+    </td>
+    <td>
+        @item.Computer.Price.ToString("C0", System.Globalization.CultureInfo.CreateSpecificCulture("id-ID")),-
+    </td>
+    <td>
+        @item.TotalTransaction.ToString("C0", System.Globalization.CultureInfo.CreateSpecificCulture("id-ID")),-
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.IdTransaction }) |
+        @*@Html.ActionLink("Details", "Details", new { id = item.SKU }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.SKU })*@
+    </td>
+</tr>
+    }
+
+</table>

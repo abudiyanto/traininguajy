@@ -16,6 +16,8 @@ namespace TrainingUAJY.ViewModels
         public int ScreenSize { get; set; }
         public int RAM { get; set; }
         public int Storage { get; set; }
+        public int Stock { get; set; }
+        public int Price { get; set; }
     }
     public class Brand
     {

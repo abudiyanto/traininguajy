@@ -23,6 +23,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
         <th></th>
     </tr>
 
@@ -41,6 +47,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+             <td>
+                 @item.Price.ToString("C0", System.Globalization.CultureInfo.CreateSpecificCulture("id-ID")),-
+             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.SKU }) |
                 @Html.ActionLink("Details", "Details", new { id = item.SKU }) |

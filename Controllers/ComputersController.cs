@@ -81,7 +81,9 @@ namespace TrainingUAJY.Controllers
                     ProductionYear = addComputer.ProductionYear,
                     ScreenSize = addComputer.ScreenSize,
                     RAM = addComputer.RAM,
-                    Storage = addComputer.Storage
+                    Storage = addComputer.Storage,
+                    Stock = addComputer.Stock,
+                    Price = addComputer.Price
                 };
                 db.Computers.Add(computer);
                 var result = await db.SaveChangesAsync();
@@ -113,15 +115,28 @@ namespace TrainingUAJY.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "SKU,Title,Description")] Computer computer)
+        public async Task<ActionResult> Edit(ViewModels.Computer edit)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(computer).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                var computer = await db.Computers.Where(x => x.SKU == edit.SKU).SingleOrDefaultAsync();
+                if (computer != null)
+                {
+                    computer.Title = edit.Title;
+                    computer.Description = edit.Description;
+                    computer.Stock = edit.Stock;
+                    computer.Price = edit.Price;
+                    db.Entry(computer).State = EntityState.Modified;
+                    var result = await db.SaveChangesAsync();
+                    if (result > 0)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                  
+                }
+               
             }
-            return View(computer);
+            return View("HttpNotFound");
         }
 
         // GET: Computers/Delete/5

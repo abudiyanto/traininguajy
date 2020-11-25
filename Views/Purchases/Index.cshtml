@@ -1,0 +1,96 @@
+﻿@model IEnumerable<TrainingUAJY.Models.Transaction>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Daftar Laptop yang Tersedia</h2>
+
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Computer)
+        </th>
+        <th>
+            <span>Stok Tersedia</span>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Computer.Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Computer.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @item.Computer.Price.ToString("C0", System.Globalization.CultureInfo.CreateSpecificCulture("id-ID")),-
+            </td>
+            <td>
+                <a href="@Url.Action("Create", new { idTransaction = item.IdTransaction })" class="btn btn-info">Beli</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+@if (ViewBag.Purchases != null)
+{
+    <br />
+    <br />
+    <hr />
+    <h2>Berikut Daftar Pembelian Saya</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Computer)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Computer.Price)
+            </th>
+
+            <th>
+                <span>Jumlah Pembelian</span>
+            </th>
+
+            <th>
+                <span>Total Harga Pembelian</span>
+            </th>
+
+        </tr>
+
+        @foreach (var item in ViewBag.Purchases)
+        {
+            <tr>
+                <td>
+                    @item.Computer.Title
+                </td>
+                <td>
+                    @item.Computer.Price.ToString("C0", System.Globalization.CultureInfo.CreateSpecificCulture("id-ID")),-
+                </td>
+                <td>
+                    @item.Amount
+                </td>
+                <td>
+                    @item.TotalTransaction.ToString("C0", System.Globalization.CultureInfo.CreateSpecificCulture("id-ID")),-
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+
+}
